@@ -1,0 +1,3 @@
+/home/ronnyz/Documents/Project/lesson01/07/testCalc/CMakeFiles/rebuild_cache.dir
+/home/ronnyz/Documents/Project/lesson01/07/testCalc/CMakeFiles/Demo.dir
+/home/ronnyz/Documents/Project/lesson01/07/testCalc/CMakeFiles/edit_cache.dir

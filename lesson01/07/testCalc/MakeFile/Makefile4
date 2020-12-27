@@ -1,0 +1,9 @@
+#define variable
+objs=$(wildcard ./*.c)
+src=$(patsubst %.c, %.o, $(objs))
+target=app
+$(target):$(src)
+	$(CC) $(src) -o $@
+
+%.c:%.o
+	gcc -c $< -o $@

@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ronnyz/Documents/Project/lesson01/07/testCalc/add.c
+stdio.h
+-
+head.h
+/home/ronnyz/Documents/Project/lesson01/07/testCalc/head.h
+
+/home/ronnyz/Documents/Project/lesson01/07/testCalc/div.c
+stdio.h
+-
+
+/home/ronnyz/Documents/Project/lesson01/07/testCalc/head.h
+
+/home/ronnyz/Documents/Project/lesson01/07/testCalc/main.c
+stdio.h
+-
+head.h
+/home/ronnyz/Documents/Project/lesson01/07/testCalc/head.h
+
+/home/ronnyz/Documents/Project/lesson01/07/testCalc/mult.c
+stdio.h
+-
+
+/home/ronnyz/Documents/Project/lesson01/07/testCalc/sub.c
+stdio.h
+-
+head.h
+/home/ronnyz/Documents/Project/lesson01/07/testCalc/head.h
+
