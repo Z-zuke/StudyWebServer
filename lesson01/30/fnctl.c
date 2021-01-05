@@ -34,7 +34,7 @@ int main() {
     // int ret = fcntl(fd, F_DUPFD);
 
     // 2.修改或者获取文件状态flag
-    int fd = open("1.txt", O_RDONLY);
+    int fd = open("1.txt", O_RDWR);
     if(fd == -1) {
         perror("open");
         return -1;
@@ -49,7 +49,7 @@ int main() {
     flag |= O_APPEND;   // flag = flag | O_APPEND
 
     // 修改文件描述符状态的flag，给flag加入O_APPEND这个标记
-    int ret = fcntl(fd, F_SETFL, O_APPEND);
+    int ret = fcntl(fd, F_SETFL, flag);
     if(ret == -1) {
         perror("fcntl");
         return -1;
