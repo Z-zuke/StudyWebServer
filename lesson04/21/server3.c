@@ -13,7 +13,7 @@ struct sockInfo {
     struct sockaddr_in addr;
 };
 
-struct sockInfo sockinfos[128];
+struct sockInfo sockinfos[128];  // 线程池
 
 void* working(void* arg) {
     // 子线程和客户端通信，获取客户端信息
@@ -87,7 +87,7 @@ int main() {
         int cfd = accept(lfd, (struct sockaddr *)&clientAddr, &len);
 
         struct sockInfo *pinfo;
-        // TODO: 还不理解这段代码的意义
+
         for (int i = 0; i < max; ++i) {
             // 从这个数组中找到一个可以用的 sockInfo 
             if (sockinfos[i].fd == -1) {

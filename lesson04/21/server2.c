@@ -11,7 +11,7 @@
 
 void recycleChild(int arg) {
     while (1) {
-        int ret = waitpid(-1, NULL, WNOHANG);
+        int ret = waitpid(-1, NULL, WNOHANG); // WNOHANG: 非阻塞
         if (ret == -1) {
             // 所有子进程都回收了
             printf("recycled all child process...\n");
@@ -69,9 +69,11 @@ int main() {
             exit(-1);
         }
 
-        pid_t pid = fork();
+        pid_t pid = fork();  // !连接套接字和监听套接字的引用计数都会被加 1
         if (pid == 0) {
             // 子进程
+            close(lfd); // 子进程不需要关心监听套接字,引用计数进行减 1 
+
             char clientIP[16];
             inet_ntop(AF_INET, &clientAddr.sin_addr.s_addr, clientIP ,sizeof(clientAddr));
             unsigned short clientPort = ntohs(clientAddr.sin_port);
@@ -94,6 +96,9 @@ int main() {
             }
             close(cfd);
             exit(0);  // 退出当前子进程
+        } else {
+            // 父进程不需要关心连接套接字,引用计数进行减 1 
+            close(cfd);
         }
     }
     close(lfd);

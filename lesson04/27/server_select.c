@@ -60,6 +60,9 @@ int main() {
             // 接收和发送数据  (第二次遍历)
             for (int i = lfd + 1; i <= maxfd; ++i) {
                 if (FD_ISSET(i, &rtmpSet)) {
+                    // !测试结果为 条件触发
+                    // printf("get event on socket = %d\n", i);
+
                     // 说明这个文件描述符对应的客户端发来了数据
                     char buf[1024] = {0};
                     int len = recv(i, buf, sizeof(buf), 0); // receive

@@ -23,7 +23,7 @@ int main() {
     // 初始化检测的文件描述符数组
     struct pollfd fds[1024];
     for (int i = 0; i < 1024; ++i) {
-        fds[i].fd = -1;
+        fds[i].fd = -1;  //  fd 为负数，poll 函数将会忽略这个 pollfd
         fds[i].events = POLLIN;  // 监测读事件
     }
     fds[0].fd = lfd;
@@ -31,7 +31,8 @@ int main() {
 
     while (1) {
         // 调用 poll，检测哪些文件描述符有数据 (第一次遍历)
-        int ret = poll(fds, nfds+1, -1);
+        // 大小可以为 1024，是因为 poll 函数已经能保证可以自动忽略 fd 为 -1 的 pollfd
+        int ret = poll(fds, nfds+1, -1);  // poll(fds, 1024, -1)
         if (ret == -1) {
             perror("poll");
             exit(-1);
@@ -68,6 +69,9 @@ int main() {
             // 接收和发送数据  (第二次遍历)
             for (int i = 1; i <= nfds; ++i) {
                 if (fds[i].revents & POLLIN) {
+                    // !测试结果为 条件触发
+                    // printf("get event on socket = %d\n", fds[i].fd);
+
                     // 说明这个文件描述符对应的客户端发来了数据
                     char buf[1024] = {0};
                     int len = recv(fds[i].fd, buf, sizeof(buf), 0);  // receive

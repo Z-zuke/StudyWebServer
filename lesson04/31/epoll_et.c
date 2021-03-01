@@ -76,7 +76,7 @@ int main() {
                         printf("Server received: %s\n", buf);
                         // write(STDOUT_FILENO, buf, len);
                         // 发送数据（回射）
-                        // TODO: 为什么发送的数据长度大于 len，while的原因？
+                        // TODO: 为什么发送的数据长度大于 len，while的原因？ 缓冲区
                         write(curfd, buf, sizeof(buf));  // write data
                     }
                     
